@@ -8,16 +8,53 @@
     </head>
 
     <body>
-	
+coucou
+
+	   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </body>
-	
-		<script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
 
 <script>
-  Twitch.init({clientId: 'kb162d5g4fj9d33nbfvw7si17wzvpxs'}, function(error, status) {
-    // the sdk is now loaded
-  });
-  
+
+  streamer = "kikettestar";
+  authorize="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=lv19lu852582o0nlfd1jui4009bg4he&redirect_uri=http://localhost";
+  viewurl = "http://api.justin.tv/api/stream/summary.json?channel="+streamer;
+  channelurl = "https://api.twitch.tv/kraken/channels/"+streamer;
+
+
+$.ajax({
+    url: viewurl,
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'jsonp',
+    jsonp: 'jsonp',
+    success: function(data) 
+    {
+         console.log("viewers :" + data.viewers_count);
+    },
+    error: function(data) 
+    { 
+        console.log("erreur");
+    }
+});
+
+
+// marche pas : ?
+$.ajax({
+    url: channelurl,
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'jsonp',
+    jsonp: 'jsonp',
+    success: function(data) 
+    {
+         console.log("vues :" + data.views);
+         console.log("abonnés :" + data.followers);
+    },
+    error: function(data) 
+    { 
+        console.log(data);
+    }
+});
   
 </script>
 </html>
